@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def tweet_source(source):
     source = source.lower()
     if 'iphone' in source:
@@ -25,3 +27,9 @@ def check_contributors_status(contributor_bool):
     if contributor_bool is True:
         return 'money-bill'
     return ''
+
+def calculate_profile_age(start_date):
+    """a generic function that returns a profile's age"""
+    today = datetime.today()
+    profile_age = today - start_date.replace(tzinfo=None) 
+    return profile_age.days
