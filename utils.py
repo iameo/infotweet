@@ -45,3 +45,21 @@ def fetch_geolocation(distance):
     latlng, city = g.latlng, g.city
     geocode_ = f'{latlng[0]},{latlng[1]},{distance}'
     return geocode_, city
+
+
+def fetch_search(params, exclude_q_in_name=False, client=None):
+    city = 'Worldwide'
+    if params['current_location']:
+        geocode_, city = fetch_geolocation(params['geocode'])
+        results = client.search_tweets(
+            q=params['q'], geocode=str(geocode_), lang=params['lang'], result_type=params['result_type'], count=60
+            )
+    else:
+        results = client.search_tweets(
+            q=params['q'], lang=params['lang'], result_type=params['result_type'], count=60
+        )
+
+    if exclude_q_in_name:
+        results = [data for data in results if params['q'] not in data.user.screen_name]
+        return results, city
+    return results, city
