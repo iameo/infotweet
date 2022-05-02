@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&family=Saira&display=swap');
+
 * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -11,28 +13,23 @@
     background-color: #ededed; 
     }
 
-  li::marker {
-    text-decoration: none !important;
-    display: none !important;
-    
+  ul {
+    list-style-type: none !important;
   }
 
-  ol li::marker {
-    text-decoration: none !important;
-    display: none !important;
-    
+  li {
+    list-style-type: none !important;
   }
 
-  ul li::marker {
-    text-decoration: none !important;
-    display: none !important;
-    
-  }
-
-  ::marker {
-    display: none !important;
-  }
   
+  .follower-following {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .profile-age {
+    font-family: 'Saira', sans-serif;
+  }
+
   .bubble {
     width: 100%;
     padding: .5em 1em;
@@ -131,8 +128,6 @@
     -webkit-border-top-right-radius: 8px;
     border-top-right-radius: 8px;
     position: relative; }
-  
-
   
   .new {
     position: absolute;
