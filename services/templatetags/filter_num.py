@@ -4,7 +4,7 @@ from django import template
 register = template.Library()
 
 @register.filter(name='filter_num', is_safe=False)
-def filter_num(val, precision=2):
+def filter_num(val, precision=1):
     try:
         int_val = int(val)
     except ValueError:
