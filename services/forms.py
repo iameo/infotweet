@@ -1,4 +1,5 @@
 from email.policy import default
+from secrets import choice
 from typing import ForwardRef
 from django import forms
 
@@ -23,9 +24,10 @@ class SearchForm(forms.Form):
         ("popular", "Most Popular")
     ]
 
-    keyword = forms.CharField(label='keyword', max_length=50, widget=forms.TextInput(attrs={'placeholder':'enter query (ex: doughnut)'})) #q
-    distance = forms.ChoiceField(label='geocode', choices=distance_kms)
+    keyword = forms.CharField(label='keyword', max_length=500, widget=forms.TextInput(attrs={'placeholder':'enter query (ex: doughnut)'})) #q
+    distance = forms.ChoiceField(label='geocode', choices=distance_kms, disabled=True)
     langauge = forms.CharField(label='language', max_length=4, widget=forms.TextInput(attrs={'placeholder':'en', 'value': 'en'}))
     type = forms.ChoiceField(label='result type', choices=result_types)
     current_location = forms.BooleanField(label='use current location', required=False)
+    
     
