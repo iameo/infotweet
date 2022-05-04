@@ -42,8 +42,11 @@ def retrieve_original_dp(link):
 def fetch_geolocation(distance):
     import geocoder
     g = geocoder.ip('me')
-    latlng, city = g.latlng, g.city
-    geocode_ = f'{latlng[0]},{latlng[1]},{distance}'
+    try:
+        lat, lng, city = g.latlng[0], g.latlng[1], g.city
+    except Exception as e:
+        return '', 'Could not ascertain'
+    geocode_ = f'{lat},{lng},{distance}'
     return geocode_, city
 
 
