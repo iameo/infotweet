@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{{ user_tweets }}
+<div class="container-fluid">
+  <section class="intro mb-4 pb-4">
+    <div class="containerx" style="margin-left: auto; margin-right:auto; padding-left:8rem; padding-right:8rem">
+        <div class="row gx-4">
+            <div class="col-12">
+                <div class="welcome text-center ml-4 mr-4 mt-4 pt-4">
+                    <h1 class="display-1">Spend less time looking for potential <span style="color: blue">customers.</span></h1>
+                    <p class="p-3" style="font-size: 1.75em;">We streamline your twitter feed based on location and distance, finding you customers.</p>
+                </div>
+                <div class="d-grid gap-3 d-md-flex justify-content-md-center">
+                    <a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">Fuck OFF</a>
+                    <a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">GET ACCESS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 cf">
+            <div class="containerx">
+                <div class="some-text mt-4 pt-4 mb-4 pb-4">
+                    <h6 class="text-center">efuinwef fioefewf efioefnwefewfnef</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="containerxy">
+        <div class="row">
+            <div class="col-12">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 pt-4" id="features">
+                    <div class="col">
+                      <div class="card h-100 shadow-lg fvx">
+                        <div class="card-body">
+                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora provident illo eos et quo saepe laborum nemo molestias iste debitis voluptate corrupti ratione quas nisi voluptates, illum quis id?</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card h-100 shadow-lg fvx">
+                        <div class="card-body">
+                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum ut vitae saepe in fuga quasi corrupti iste, impedit deleniti beatae facilis molestias explicabo excepturi, at magnam reprehenderit omnis illum odio.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card h-100 shadow-lg fvx">
+                        <div class="card-body">
+                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                          <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro magnam inventore voluptatibus! Consequuntur exercitationem fugit cupiditate necessitatibus id autem laboriosam. Placeat, excepturi recusandae? Animi debitis, sapiente nemo consectetur unde veritatis.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+          
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+
+{% block contact %}
+<section id="contact">
+  <div class="container">
+      <div class="row gx-4 gx-lg-5 mt-4 pt-4 mb-4 pb-4">
+          <div class="col-lg-7 col-md-6 col-sm-12">
+              <form action="action_page.php">
+                  <h3 class="text-center display-6">DROP US A MESSAGE</h3>
+
+                  <div class="row g-3">
+                    <div class="col-6">
+                        <div class="form-floating mb-2">
+                            <input type="text" id="contact-name" class="form-control border" placeholder="Ron" name="contact-name" aria-label="name" required>
+                            <label for="contactEmail">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-2">
+                            <input type="email" id="contact-email" class="form-control border" placeholder="email" name="contact-email" aria-label="email" required>
+                            <label for="contactEmail">Email</label>
+                        </div>
+                    </div>
+              
+                    <div class="col-lg-12">
+                        <textarea id="subject" name="subject" class="form-control" placeholder="Write something.." rows="3" required></textarea>
+                        <button type="submit" id="send-msg" class="btn btn-warning mt-2">SEND MESSAGE</button>
+                    </div>
+                  </div>
+              </form>
+          </div>
+          <div class="col-lg-5 col-md-6 col-sm-12">
+            <div class="card border border-secondary border-secondary mt-4 pt-2" style="font-family:'Satisfy', cursive;">
+              <div class="card-body ad-space" style="height:20rem">
+                AD HERE
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+</section>
+{% endblock %}

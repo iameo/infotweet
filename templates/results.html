@@ -1,0 +1,89 @@
+{% load filter_num %}
+
+<div class="row">
+    {% if city and keyword %}
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <div class="p-2 bd-highlight">
+                <h5 class="display-6">City: {{ city }}</h5>
+            </div>
+            <div class="p-2 bd-highlight">
+                <h5 class="display-6">Keyword: {{ keyword }}</h5>
+            </div>
+          </div>
+
+    </div>
+    {% endif %}
+    <div class="col-12 mt-2">
+        <ul class="timeline list-group" id="search-results">
+            {% if data %}
+                <div class="follow-schema mb-2 mt-2 pb-2 pt-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="GET" id="activity">
+                                {% csrf_token %}
+                                {{ activity_form }}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% for tweet_data in data %}
+            <li class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                <div class="avatar">
+                    <img src='{{ tweet_data.dp_link }}'>
+                    <div class="relationship-count">
+                        <p class="text-center follower-following">{{ tweet_data.friends_count|filter_num }} | {{ tweet_data.followers_count|filter_num }}</p>
+                        <p class="profile-age"> <i class="fa-solid fa-heart-pulse" style="color:green;"></i>{{ tweet_data.user_created_at }} day{{tweet_data.user_created_at|pluralize}} old</p>
+                    </div>
+                </div>
+
+                <div class="bubble-container">
+                    <div class="bubble">
+                    <div class="tweet_status">
+                        {% if  tweet_data.is_quote == True %}
+                        <i style="color: white;" class="fa-solid fa-retweet"></i> 
+                        {% elif tweet_data.is_reply %}
+                            <i style="color: white;" class="fa-solid fa-comment"></i> 
+                        {% else %}
+                            <i style="color: white;" class="fa-brands fa-twitter"></i> 
+                        {% endif %}
+                            <div class="icon-retweet"></div>
+                    </div>
+                    <h3>{{ tweet_data.name }} <span><i class="fa-solid fa-{{ tweet_data.verified|default_if_none:'' }}" style="color:blue;"></i></span> @{{ tweet_data.screen_name }} <span><i class="fa-solid fa-{{ tweet_data.contributors_enabled }}"></i></span></h3>
+                        <p> {{ tweet_data.tweet }}</p>
+
+                        <p> <i class="fa-solid fa-comment"></i> <span style="padding: 0 30px 0 3px">0</span><i class="fa-solid fa-heart"></i> <span style="padding: 0 30px 0 3px">{{ tweet_data.fav_count|filter_num }}</span> <i class="fa-solid fa-retweet"></i> <span style="padding: 0 30px 0 3px">{{ tweet_data.retweet_count|filter_num }}</span></p>
+                        
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 flex-grow-1 bd-highlight">{{ tweet_data.tweet_created_at|date:"D, d M y" }} <i class="fa-solid fa-clock"></i> {{ tweet_data.tweet_created_at|timesince }}</div>
+                            <div class="p-2 bd-highlight"><i class="fa-solid fa-location-dot"></i> {{ tweet_data.location|truncatechars:20 }}</div>
+                            <div class="p-2 bd-highlight">
+                                {% if 'apple' in tweet_data.source or 'android' in tweet_data.source %}
+                                <span><i class="fa-brands fa-{{ tweet_data.source }}"></i></span>
+                                {% else  %}
+                                <span><i class="fa-solid fa-{{ tweet_data.source }}"></i></span>
+                                {% endif %}
+                            </div>
+                          </div>
+                        <div class="over-bubble">
+                            <div class="icon-mail-reply action"></div>
+                            <div class="icon-retweet action"></div>
+                            <div class="icon-star"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow"></div>
+                    <div class="arrow-profile"></div>
+                </div>
+            </li>
+            {% empty %}
+            <div class="col-12">
+                <h6 class="display-6 mb-2 mt-2 pb-2 pt-2">Be sure to use a farther distance to fetch more data!</h6>
+            </div>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>

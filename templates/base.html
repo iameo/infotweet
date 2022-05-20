@@ -13,10 +13,54 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light text-black stroke">
+        <div class="container">
+          <a class="navbar-brand nb xdisplay-4" href="/">XDX</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
 
+              {% if not current_user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#features">Features</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="#convertSlip">Convert Slip</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#follow-us">Follow Us</a>
+              </li>
+            </ul>
+            {% if current_user.is_authenticated %}  
+            <div class="d-flex align-items-center">
+              <img class="rounded-circle px-3 me-2" src="" alt="alternatetext">
+              <a class="shm" href="#"> LOGOUT</a>
+            </div>
+            {% endif %}
+        </div>
+        </div>
+    </nav>
     {% block main %}
 
     {% endblock %}
+
+    {% block contact %}
+
+    {% endblock %}
+
+    <div class="sticky-bottom pt-5 footer" id="footer">
+        <p class="footer-attr text-center">Made with <i style="color: red;" class="fa-solid fa-heart"></i> by <a href="https://www.twitter.com/__oemmanuel__">Emmanuel</a> <span class="sep">|</span> &copy {% now 'Y' %}
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -24,6 +68,16 @@
     <script type="text/javascript">
         document.body.addEventListener('htmx:configRequest', (event) => {
         event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+        $(function () {
+            $("#id_current_location").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#id_distance").removeAttr("disabled");
+                    $("#id_distance").focus();
+                } else {
+                    $("#id_distance").attr("disabled", "disabled");
+                }
+            });
         });
     </script>
 
