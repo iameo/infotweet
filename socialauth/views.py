@@ -10,10 +10,17 @@ from .serializers import TwitterAuthSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 from django.contrib import messages
+
 # from socialauth import serializers
+
+
+def rt(request):
+    t = TwitterUser.objects.all()
+    print(str(t))
+    return JsonResponse(str(t), safe=False)
 
 @api_view(['POST'])
 def se(request):
