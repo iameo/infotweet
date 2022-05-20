@@ -30,4 +30,18 @@ class SearchForm(forms.Form):
     type = forms.ChoiceField(label='result type', choices=result_types)
     current_location = forms.BooleanField(label='use current location', required=False)
     
-    
+
+class ActivityForm(forms.Form):
+    like_ = [
+        ('all', 'ALL'),
+        ('30%', '30%')
+    ]
+
+    follow_ = [
+        ('all', 'ALL'),
+        ('50%', '50%'),
+        ('70%', '70%')
+    ]
+
+    favorite = forms.ChoiceField(label="like schema", choices=like_, required=False)
+    follow = forms.ChoiceField(label='follow schema', choices=follow_, required=False)
