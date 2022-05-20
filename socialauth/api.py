@@ -1,12 +1,15 @@
 import tweepy
-from decouple import config
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class TwitterAPI:
     def __init__(self):
-        self.api_key = config('CONSUMER_API_KEY')
-        self.api_secret = config('CONSUMER_API_SECRET')
-        self.oauth_callback_url = config('TWITTER_OAUTH_CALLBACK_URL')
+        self.api_key = os.getenv('CONSUMER_API_KEY')
+        self.api_secret = os.getenv('CONSUMER_API_SECRET')
+        self.oauth_callback_url = os.getenv('TWITTER_OAUTH_CALLBACK_URL')
 
     def twitter_login(self):
         oauth1_user_handler = tweepy.OAuthHandler(self.api_key, self.api_secret, callback=self.oauth_callback_url)
