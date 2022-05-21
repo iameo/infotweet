@@ -10,6 +10,7 @@ class TwitterAPI:
         self.api_key = os.getenv('CONSUMER_API_KEY')
         self.api_secret = os.getenv('CONSUMER_API_SECRET')
         self.oauth_callback_url = os.getenv('TWITTER_OAUTH_CALLBACK_URL')
+        print(self.api_key, self.api_secret)
 
     def twitter_login(self):
         oauth1_user_handler = tweepy.OAuthHandler(self.api_key, self.api_secret, callback=self.oauth_callback_url)
