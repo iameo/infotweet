@@ -132,3 +132,6 @@ def create_fav(request):
     status_list = []
     for status in status_list:
         client.create_favorite(status.id, include_entities=True)
+
+def ff(request):
+    return render(request, 'abc.html')
