@@ -22,13 +22,9 @@ def rt(request):
     print(str(t))
     return JsonResponse(str(t), safe=False)
 
-@api_view(['POST'])
+@api_view(['GET'])
 def se(request):
-    serializer = TwitterAuthSerializer(data=request.data)
-    if serializer.is_valid():
-        print("messageee", serializer.data)
-        return HttpResponseRedirect('home-view')
-    return Response({"message":"failed"})
+    return HttpResponseRedirect('https://www.youtube.com/watch?v=T8j3E6HbyBk')
 
 
 # # Create your views here.
@@ -89,4 +85,4 @@ def twitter_callback(request):
 @login_required
 def twitter_logout(request):
     logout(request)
-    return redirect('ab')
+    return redirect('welcome')
