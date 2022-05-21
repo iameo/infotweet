@@ -64,7 +64,7 @@ def twitter_callback(request):
             twitter_auth_token.oauth_token_secret = access_token_secret
             twitter_auth_token.save()
             # Create user
-            info, request.session['clientele'] = twitter_api.get_me(access_token, access_token_secret)
+            info = twitter_api.get_me(access_token, access_token_secret)
             if info is not None:
                 twitter_user_new = TwitterUser(twitter_id=info[0]['id'], screen_name=info[0]['name'],
                                                name=info[0]['name'], profile_image_url=info[0]['profile_image_url'])
