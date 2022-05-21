@@ -69,23 +69,24 @@ def twitter_callback(request):
             twitter_auth_token.save()
             # Create user
             info = twitter_api.get_me(access_token, access_token_secret)
+            print(info)
             if info is not None:
-                twitter_user_new = TwitterUser(twitter_id=info[0]['id'], screen_name=info[0]['username'],
+                twitter_user_new = TwitterUser(twitter_id=info[0]['id'], screen_name=info[0]['name'],
                                                name=info[0]['name'], profile_image_url=info[0]['profile_image_url'])
                 twitter_user_new.twitter_oauth_token = twitter_auth_token
                 user, twitter_user = create_update_user_from_twitter(twitter_user_new)
                 if user is not None:
                     login(request, user)
-                    return redirect('search')
+                    return redirect('search_tweets')
             else:
                 messages.add_message(request, messages.ERROR, 'Unable to get profile details. Please try again.')
                 return render(request, 'homex.html')
         else:
             messages.add_message(request, messages.ERROR, 'Unable to get access token. Please try again.')
-            return render(request, 'homex.html')
+            return render(request, 'homexx.html')
     else:
         messages.add_message(request, messages.ERROR, 'Unable to retrieve access token. Please try again.')
-        return render(request, 'homex.html')
+        return render(request, 'homexxx.html')
 
 
 
