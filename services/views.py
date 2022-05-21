@@ -16,6 +16,8 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 import os
 
+from socialauth.api import TwitterAPI
+
 def getClient():
     endpoint = 'https://wedzb.herokuapp.com/authh/fff/'
     access_token_key= os.getenv('ACCESS_TOKEN_KEY')
@@ -33,27 +35,9 @@ def getClient():
         access_token_key, access_token_secret)
     client = tweepy.API(auth, wait_on_rate_limit=True)
     return client
-# is_quote_status
 
-# def twi_auth(request):
-#     twitter = Twython(
-#         '',
-#         '',
-#         )
-#     # Then send them over there, durh.
-#     # tw_callback_url = request.build_absolute_uri(reverse('social_home'))
-#     twitter_auth = twitter.get_authentication_tokens(callback_url='http://127.0.0.1:8000/access/twitter/authorized/')
-#     request.session['twitter_auth'] = twitter_auth
-#     return HttpResponseRedirect(twitter_auth['auth_url'])
 
 def social_home(request):
-    # oauth_token_secret = request.session['twitter_auth']['oauth_token_secret']
-    # oauth_token = request.session['twitter_auth']['oauth_token']
-    # twitter = Twython('', '', oauth_token, oauth_token_secret)
-    # authorized_tokens = twitter.get_authorized_tokens(request.GET['oauth_verifier'])
-
-    # twitter = Twython('', '', authorized_tokens['oauth_token'], authorized_tokens['oauth_token_secret'])
-    # user_tweets = twitter.get_home_timeline()
     return render(request, "abc.html")
 
 @login_required
@@ -68,13 +52,12 @@ def home_view(request):
     #     "access_token_secret":access_token_secret})
     context = {}
     context['form'] = SearchForm()
-    context['userr'] = request.user
-    print(context, request.user)
     return render( request, "home.html", context)
 
 
 def search_tweets(request):
-    # client = getClient()
+    twitter = TwitterAPI()
+    client = twitter.tweepy_client()
 
     params = {}
     data = []
