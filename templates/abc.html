@@ -3,16 +3,16 @@
 {% block main %}
 <div class="container-fluid">
   <section class="intro mb-4 pb-4">
-    <div class="containerx" style="margin-left: auto; margin-right:auto; padding-left:8rem; padding-right:8rem">
-        <div class="row gx-4">
-            <div class="col-12">
+    <div class="containerx" style="margin:0 auto;">
+        <div class="row gx-3">
+            <div class="col-12 col-sm-12">
                 <div class="welcome text-center ml-4 mr-4 mt-4 pt-4">
                     <h1 class="display-1">Spend less time looking for potential <span style="color: blue">customers.</span></h1>
                     <p class="p-3" style="font-size: 1.75em;">We streamline your twitter feed based on location and distance, finding you customers.</p>
                 </div>
-                <div class="d-grid gap-3 d-md-flex justify-content-md-center">
-                    <a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">Fuck OFF</a>
-                    <a href="{% url 'twitter_login' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">GET ACCESS</a>
+                <div class="gap-3 d-flex justify-content-center">
+                  <div class=""><a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary fv">Fuck OFF</a></div>
+                  <div class=""><a href="{% url 'twitter_login' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary fv">GET ACCESS</a></div>
                 </div>
             </div>
         </div>
@@ -66,7 +66,6 @@
           <div class="col-lg-7 col-md-6 col-sm-12">
               <form action="action_page.php">
                   <h3 class="text-center display-6">DROP US A MESSAGE</h3>
-
                   <div class="row g-3">
                     <div class="col-6">
                         <div class="form-floating mb-2">
