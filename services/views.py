@@ -16,19 +16,19 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 import os
 
-from flask_login import current_user
+
 from socialauth.api import TwitterAPI
 from socialauth.models import TwitterUser
 
 
-def getClient(request):
-    user = TwitterUser.objects.filter(user=request.user)
-    try:
-        client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=user.twitter_oauth_token.oauth_token,
-                                access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
-    except Exception as e:
-        return None
-    return client
+# def getClient(request):
+#     user = TwitterUser.objects.filter(user=request.user)
+#     try:
+#         client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=user.twitter_oauth_token.oauth_token,
+#                                 access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
+#     except Exception as e:
+#         return None
+#     return client
 
 
 
@@ -40,7 +40,7 @@ def social_home(request):
 def home_view(request):
     context = {}
     context['form'] = SearchForm()
-    context['current_user'] = current_user
+    context['current_user'] = request.user
     return render( request, "home.html", context)
 
 
