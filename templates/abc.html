@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block main %}
-{{ user_tweets }}
 <div class="container-fluid">
   <section class="intro mb-4 pb-4">
     <div class="containerx" style="margin-left: auto; margin-right:auto; padding-left:8rem; padding-right:8rem">
@@ -13,7 +12,7 @@
                 </div>
                 <div class="d-grid gap-3 d-md-flex justify-content-md-center">
                     <a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">Fuck OFF</a>
-                    <a href="{% url 'defef' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">GET ACCESS</a>
+                    <a href="{% url 'twitter_login' %}" class="btn btn-lg shadow-sm p-3 mb-5 rounded display-block btn-outline-primary btn-block fv">GET ACCESS</a>
                 </div>
             </div>
         </div>
@@ -22,44 +21,38 @@
         <div class="col-12 cf">
             <div class="containerx">
                 <div class="some-text mt-4 pt-4 mb-4 pb-4">
-                    <h6 class="text-center">efuinwef fioefewf efioefnwefewfnef</h6>
+                    <h6 class="text-center">Wingardium Leviosa</h6>
                 </div>
             </div>
         </div>
     </div>
-    <div class="containerxy">
-        <div class="row">
-            <div class="col-12">
-                <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 pt-4" id="features">
-                    <div class="col">
-                      <div class="card h-100 shadow-lg fvx">
-                        <div class="card-body">
-                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora provident illo eos et quo saepe laborum nemo molestias iste debitis voluptate corrupti ratione quas nisi voluptates, illum quis id?</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="card h-100 shadow-lg fvx">
-                        <div class="card-body">
-                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
-                          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum ut vitae saepe in fuga quasi corrupti iste, impedit deleniti beatae facilis molestias explicabo excepturi, at magnam reprehenderit omnis illum odio.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="card h-100 shadow-lg fvx">
-                        <div class="card-body">
-                          <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
-                          <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro magnam inventore voluptatibus! Consequuntur exercitationem fugit cupiditate necessitatibus id autem laboriosam. Placeat, excepturi recusandae? Animi debitis, sapiente nemo consectetur unde veritatis.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4 mt-4 pt-4" id="features">
+          <div class="col">
+            <div class="card h-100 shadow-lg fvx">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                <p class="card-text">mLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis tempora provident illo eos et quo saepe laborum nemo molestias iste debitis voluptate corrupti ratione quas nisi voluptates, illum quis id?</p>
+              </div>
             </div>
-
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-lg fvx">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum ut vitae saepe in fuga quasi corrupti iste, impedit deleniti beatae facilis molestias explicabo excepturi, at magnam reprehenderit omnis illum odio.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-lg fvx">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-3 mt-2 pb-3 pt-2"><span><i class="fa-solid fa-shield" style="font-size: 3rem; color: green"></i></span></h5>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro magnam inventore voluptatibus! Consequuntur exercitationem fugit cupiditate necessitatibus id autem laboriosam. Placeat, excepturi recusandae? Animi debitis, sapiente nemo consectetur unde veritatis.</p>
+              </div>
+            </div>
+          </div>
         </div>
-          
     </div>
   </section>
 </div>
