@@ -4,7 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h5 class="display-6">Hello, {{ user }} </h5>
+                <h5 class="display-6">Helloo, {{ user }} </h5>
+                    <div class="profile-card">
+                        {% if not current_user.banner %}
+                            <img src="{{ current_user.profile_image_url }}" class="img img-fluid">
+                        {% else %}
+                            <img src="{{ current_user.profile_image_url }}" class="img img-fluid">
+                        {% endif %}
+                        <div class="profile-name">{{ user }}</div>
+                        <div class="profile-username">@{{ user }}</div>
+                    </div>
             </div>
         </div>
         <div class="row text-center pt-4" style="margin: 3rem auto;">
