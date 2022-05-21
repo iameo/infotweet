@@ -68,6 +68,7 @@ def home_view(request):
     #     "access_token_secret":access_token_secret})
     context = {}
     context['form'] = SearchForm()
+    context['user'] = request.user
     return render( request, "home.html", context)
 
 
