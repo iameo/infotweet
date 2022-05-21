@@ -39,7 +39,7 @@ class TwitterAPI:
             
         except Exception as e:
             return None
-        return info, client
+        return info
     
     # def tweepy_client(self):
     #     user = TwitterUser.objects.filter(user=request.user)
