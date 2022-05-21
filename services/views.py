@@ -36,15 +36,17 @@ def getClient(request):
 def social_home(request):
     return render(request, "abc.html")
 
-@login_required
-@twitter_login_required
+
 def home_view(request):
+    if not request.user.is_authenticated:
+        return render(request, 'abc.html')
     context = {}
     context['form'] = SearchForm()
     context['current_user'] = TwitterUser.objects.filter(user=request.user).first()
     return render( request, "home.html", context)
 
-
+@login_required
+@twitter_login_required
 def search_tweets(request):
     twitter = TwitterAPI()
     # client = request.session['clientele']
@@ -130,19 +132,3 @@ def create_fav(request):
     status_list = []
     for status in status_list:
         client.create_favorite(status.id, include_entities=True)
-
-
-def ff(request):
-    return render(request, 'abc.html')
-
-# @app.route('/twitter')
-# def access():
-#     try:
-#         if not twitter.authorized:
-#             return redirect(url_for("twitter.login"))
-#     except Exception as e:
-#         print(e)
-#     else:
-#         resp = twitter.get('account/settings.json')
-#         assert resp.ok
-#         return redirect(url_for('home'))
