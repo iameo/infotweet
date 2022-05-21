@@ -9,8 +9,9 @@ class TwitterAPI:
     def __init__(self):
         self.api_key = os.getenv('CONSUMER_API_KEY')
         self.api_secret = os.getenv('CONSUMER_API_SECRET')
+        self.client_id = os.getenv('TWITTER_CLIENT_ID')
+        self.client_secret = os.getenv('TWITTER_CLIENT_SECRET')
         self.oauth_callback_url = os.getenv('TWITTER_OAUTH_CALLBACK_URL')
-        print(self.api_key, self.api_secret)
 
     def twitter_login(self):
         oauth1_user_handler = tweepy.OAuthHandler(self.api_key, self.api_secret, callback=self.oauth_callback_url)
@@ -31,9 +32,10 @@ class TwitterAPI:
     def get_me(self, access_token, access_token_secret):
         try:
             client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=access_token,
-                                   access_token_secret=access_token_secret)
+                                   access_token_secret=access_token_secret, wait_on_rate_limit=True)
             info = client.get_me(user_auth=True, expansions='pinned_tweet_id')
-            return info
+            
         except Exception as e:
             print(e)
             return None
+        return info
