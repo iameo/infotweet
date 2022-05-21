@@ -11,7 +11,9 @@ from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import requests
-
+from socialauth.wrapper import twitter_login_required
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 import os
 
 def getClient():
@@ -54,6 +56,8 @@ def social_home(request):
     # user_tweets = twitter.get_home_timeline()
     return render(request, "abc.html")
 
+@login_required
+@twitter_login_required
 def home_view(request):
     # endpoint = 'http://localhost:8080/authh/fff/'
     # access_token_key=''
@@ -68,7 +72,7 @@ def home_view(request):
 
 
 def search_tweets(request):
-    client = getClient()
+    # client = getClient()
 
     params = {}
     data = []
