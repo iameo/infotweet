@@ -46,7 +46,7 @@
             </ul>
             {% if user.is_authenticated %}  
             <div class="d-flex align-items-center">
-              <img class="rounded-circle px-3 me-2" src="{{ current_user.profile_image_url }}" alt="alternatetext">
+              <img class="rounded-circle px-3 me-2" src="{{ current_user.profile_image_url }}" style="width:60px; height:30px">
               <a class="shm" href="{% url 'twitter_logout' %}">LOGOUT</a>
             </div>
             {% endif %}
