@@ -38,18 +38,18 @@ def social_home(request):
 
 
 def home_view(request):
-    if not request.user.is_authenticated:
-        return render(request, 'abc.html')
-    context = {}
-    context['form'] = SearchForm()
-    context['current_user'] = TwitterUser.objects.filter(user=request.user).first()
-    return render( request, "home.html", context)
+    if request.user.is_authenticated:
+        context = {}
+        context['form'] = SearchForm()
+        context['current_user'] = TwitterUser.objects.filter(user=request.user).first()
+        return render( request, "home.html", context)
+    return render(request, 'abc.html')
+
 
 @login_required
 @twitter_login_required
 def search_tweets(request):
     twitter = TwitterAPI()
-    # client = request.session['clientele']
     user = TwitterUser.objects.filter(user=request.user).first()
 
     auth = tweepy.OAuthHandler(twitter.api_key, twitter.api_secret)
