@@ -17,24 +17,17 @@ from django.contrib.auth.decorators import login_required
 import os
 
 from socialauth.api import TwitterAPI
+from socialauth.models import TwitterUser
 
-def getClient():
-    endpoint = 'https://wedzb.herokuapp.com/authh/fff/'
-    access_token_key= os.getenv('ACCESS_TOKEN_KEY')
-    access_token_secret= os.getenv('ACCESS_TOKEN_SECRET')
-
-    resp = requests.post(endpoint, json={
-        "access_token_key":access_token_key,
-        "access_token_secret":access_token_secret})
-
-    auth = tweepy.OAuthHandler(
-        os.getenv('CONSUMER_API_KEY', ''), 
-        os.getenv('CONSUMER_API_SECRET', '')
-        )
-    auth.set_access_token(
-        access_token_key, access_token_secret)
-    client = tweepy.API(auth, wait_on_rate_limit=True)
+def getClient(request):
+    user = TwitterUser.objects.filter(user=request.user)
+    try:
+        client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=user.twitter_oauth_token.oauth_token,
+                                access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
+    except Exception as e:
+        return None
     return client
+
 
 
 def social_home(request):
@@ -56,8 +49,9 @@ def home_view(request):
 
 
 def search_tweets(request):
-    twitter = TwitterAPI()
-    client = twitter.tweepy_client()
+    # twitter = TwitterAPI()
+    client = request.session['clientele']
+    # getClient(request)
 
     params = {}
     data = []
