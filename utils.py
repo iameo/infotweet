@@ -39,9 +39,9 @@ def retrieve_original_dp(link):
     return link.replace('_normal', '')
 
 
-def fetch_geolocation(distance):
+def fetch_geolocation(distance, ip):
     import geocoder
-    g = geocoder.ip('me')
+    g = geocoder.ip(ip)
     try:
         lat, lng, city = g.latlng[0], g.latlng[1], g.city
     except Exception as e:
@@ -50,10 +50,19 @@ def fetch_geolocation(distance):
     return geocode_, city
 
 
-def fetch_search(params, exclude_q_in_name=False, client=None):
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+def fetch_search(params, exclude_q_in_name=False, client=None, request=None):
+    ip = get_client_ip(request)
     city = 'Worldwide'
     if params['current_location']:
-        geocode_, city = fetch_geolocation(params['geocode'])
+        geocode_, city = fetch_geolocation(params['geocode'], ip=ip)
         results = client.search_tweets(
             q=params['q'], geocode=str(geocode_), lang=params['lang'], result_type=params['result_type'], count=60
             )
