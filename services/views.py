@@ -69,6 +69,7 @@ def home_view(request):
     context = {}
     context['form'] = SearchForm()
     context['user'] = request.user
+    print(context, request.user)
     return render( request, "home.html", context)
 
 
