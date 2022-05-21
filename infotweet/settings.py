@@ -25,7 +25,7 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
@@ -162,6 +162,8 @@ LOGIN_URL = '/'
 if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
+    
 ]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
