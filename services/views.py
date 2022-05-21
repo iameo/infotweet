@@ -19,6 +19,7 @@ import os
 from socialauth.api import TwitterAPI
 from socialauth.models import TwitterUser
 
+
 def getClient(request):
     user = TwitterUser.objects.filter(user=request.user)
     try:
@@ -36,13 +37,6 @@ def social_home(request):
 @login_required
 @twitter_login_required
 def home_view(request):
-    # endpoint = 'http://localhost:8080/authh/fff/'
-    # access_token_key=''
-    # access_token_secret=''
-
-    # resp = requests.post(endpoint, json={
-    #     "access_token_key":access_token_key,
-    #     "access_token_secret":access_token_secret})
     context = {}
     context['form'] = SearchForm()
     return render( request, "home.html", context)
@@ -50,7 +44,10 @@ def home_view(request):
 
 def search_tweets(request):
     # twitter = TwitterAPI()
-    client = request.session['clientele']
+    # client = request.session['clientele']
+    user = TwitterUser.objects.filter(user=request.user)
+    client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=user.twitter_oauth_token.oauth_token,
+                                access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
     # getClient(request)
 
     params = {}
