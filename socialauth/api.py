@@ -42,7 +42,7 @@ class TwitterAPI:
         return info
     
     def tweepy_client(self):
-        user = TwitterUser.filter(user=request.user)
+        user = TwitterUser.objects.filter(user=request.user)
         try:
             client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=user.twitter_oauth_token.oauth_token,
                                    access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
