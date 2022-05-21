@@ -1,18 +1,14 @@
 from django.shortcuts import render
-from requests import request
 from .forms import SearchForm, ActivityForm
 import tweepy
   
-from utils import get_client_ip, tweet_source, tweet_location, check_verification, check_contributors_status, calculate_profile_age, retrieve_original_dp, fetch_search
+from utils import tweet_source, tweet_location, check_verification, check_contributors_status, calculate_profile_age, retrieve_original_dp, fetch_search
 from django.core.paginator import Paginator
-
-# from twython import Twython
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-import requests
+
 from socialauth.wrapper import twitter_login_required
-from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 import os
 
