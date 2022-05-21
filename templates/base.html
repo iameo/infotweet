@@ -25,26 +25,26 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
 
-              {% if not current_user.is_authenticated %}
+              {% if not user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="#features">Features</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="#convertSlip">Convert Slip</a>
+                <a class="nav-link" href="#nuin">Bleh</a>
               </li>
               {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#follow-us">Follow Us</a>
+                <a class="nav-link" href="#footer">Follow Us</a>
               </li>
             </ul>
-            {% if current_user.is_authenticated %}  
+            {% if user.is_authenticated %}  
             <div class="d-flex align-items-center">
-              <img class="rounded-circle px-3 me-2" src="" alt="alternatetext">
-              <a class="shm" href="#"> LOGOUT</a>
+              <img class="rounded-circle px-3 me-2" src="{{ current_user.profile_image_url }}" alt="alternatetext">
+              <a class="shm" href="{% url 'twitter_logout' %}">LOGOUT</a>
             </div>
             {% endif %}
         </div>
