@@ -47,9 +47,8 @@ def search_tweets(request):
     # client = request.session['clientele']
     user = TwitterUser.objects.filter(user=request.user).first()
     print(user)
-    auth = tweepy.OAuthHandler(consumer_key=twitter.api_key, consumer_secret=twitter.api_secret)
-    auth.set_access_token(access_token=user.twitter_oauth_token.oauth_token,
-                                access_token_secret=user.twitter_oauth_token.oauth_token_secret, wait_on_rate_limit=True)
+    auth = tweepy.OAuthHandler(twitter.api_key, twitter.api_secret)
+    auth.set_access_token(user.twitter_oauth_token.oauth_token,user.twitter_oauth_token.oauth_token_secret)
     client = tweepy.API(auth, wait_on_rate_limit=True)
     # getClient(request)
     print(client)
