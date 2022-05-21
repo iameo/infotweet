@@ -6,6 +6,10 @@
     -webkit-box-sizing: border-box;
   }
   
+  html {
+    overflow-x: hidden;
+      }
+      
 body {
   font-family: 'Quicksand';
   color: #7f8c8d;
