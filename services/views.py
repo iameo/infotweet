@@ -16,6 +16,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 import os
 
+from flask_login import current_user
 from socialauth.api import TwitterAPI
 from socialauth.models import TwitterUser
 
@@ -34,11 +35,12 @@ def getClient(request):
 def social_home(request):
     return render(request, "abc.html")
 
-# @login_required
-# @twitter_login_required
+@login_required
+@twitter_login_required
 def home_view(request):
     context = {}
     context['form'] = SearchForm()
+    context['current_user'] = current_user
     return render( request, "home.html", context)
 
 
