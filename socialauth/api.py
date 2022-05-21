@@ -35,7 +35,7 @@ class TwitterAPI:
         try:
             client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=access_token,
                                    access_token_secret=access_token_secret, wait_on_rate_limit=True)
-            info = client.get_me(user_auth=True, expansions='pinned_tweet_id')
+            info = client.get_me(user_auth=True, expansions='pinned_tweet_id', user_fields='profile_image_url')
             
         except Exception as e:
             return None
