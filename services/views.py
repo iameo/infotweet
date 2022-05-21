@@ -3,7 +3,7 @@ from requests import request
 from .forms import SearchForm, ActivityForm
 import tweepy
   
-from utils import tweet_source, tweet_location, check_verification, check_contributors_status, calculate_profile_age, retrieve_original_dp, fetch_search
+from utils import get_client_ip, tweet_source, tweet_location, check_verification, check_contributors_status, calculate_profile_age, retrieve_original_dp, fetch_search
 from django.core.paginator import Paginator
 
 # from twython import Twython
@@ -34,8 +34,8 @@ def getClient(request):
 def social_home(request):
     return render(request, "abc.html")
 
-@login_required
-@twitter_login_required
+# @login_required
+# @twitter_login_required
 def home_view(request):
     context = {}
     context['form'] = SearchForm()
@@ -46,12 +46,10 @@ def search_tweets(request):
     twitter = TwitterAPI()
     # client = request.session['clientele']
     user = TwitterUser.objects.filter(user=request.user).first()
-    print(user)
+
     auth = tweepy.OAuthHandler(twitter.api_key, twitter.api_secret)
     auth.set_access_token(user.twitter_oauth_token.oauth_token,user.twitter_oauth_token.oauth_token_secret)
     client = tweepy.API(auth, wait_on_rate_limit=True)
-    # getClient(request)
-    print(client)
 
     params = {}
     data = []
@@ -63,7 +61,7 @@ def search_tweets(request):
     params['current_location'] = request.GET.get('current_location')
 
     
-    results, city = fetch_search(params, exclude_q_in_name=False, client=client)
+    results, city = fetch_search(params, exclude_q_in_name=False, client=client, request=request)
 
 
     dp_links = [retrieve_original_dp(l.user.profile_image_url_https) for l in results]
