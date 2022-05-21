@@ -41,7 +41,7 @@ def social_home(request):
 def home_view(request):
     context = {}
     context['form'] = SearchForm()
-    context['current_user'] = request.user
+    context['current_user'] = TwitterUser.objects.filter(user=request.user).first()
     return render( request, "home.html", context)
 
 

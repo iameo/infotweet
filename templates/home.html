@@ -11,8 +11,8 @@
                         {% else %}
                             <img src="{{ current_user.profile_image_url }}" class="img img-fluid">
                         {% endif %}
-                        <div class="profile-name">{{ user }}</div>
-                        <div class="profile-username">@{{ user }}</div>
+                        <div class="profile-name">{{ current_user.screen_name }}</div>
+                        <div class="profile-username">@{{ current_user.name }}</div>
                     </div>
             </div>
         </div>
