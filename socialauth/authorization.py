@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from .api import TwitterAPI
 from .models import TwitterUser
-
+from utils import retrieve_original_dp
 
 def create_update_user_from_twitter(twitter_user_new):
     twitter_user = TwitterUser.objects.filter(twitter_id=twitter_user_new.twitter_id).first()
@@ -14,14 +14,14 @@ def create_update_user_from_twitter(twitter_user_new):
         twitter_user = TwitterUser(twitter_id=twitter_user_new.twitter_id,
                                    name=twitter_user_new.name,
                                    screen_name=twitter_user_new.screen_name,
-                                   profile_image_url=twitter_user_new.profile_image_url)
+                                   profile_image_url=retrieve_original_dp(twitter_user_new.profile_image_url))
         twitter_user.user = user
         twitter_user.twitter_oauth_token = twitter_user_new.twitter_oauth_token
         twitter_user.save()
         return user, twitter_user
     else:
         twitter_user.twitter_oauth_token = twitter_user_new.twitter_oauth_token
-        twitter_user.profile_image_url = twitter_user_new.profile_image_url
+        twitter_user.profile_image_url = retrieve_original_dp(twitter_user_new.profile_image_url)
         twitter_user.save()
         user = twitter_user.user
         if user is not None:
