@@ -25,13 +25,9 @@ def rt(request):
 @api_view(['POST'])
 def se(request):
     serializer = TwitterAuthSerializer(data=request.data)
-    # print("selle", serializer.is_valid(), serializer)
     if serializer.is_valid():
-        # print("44RE: ",serializer.data)
         print("messageee", serializer.data)
         return HttpResponseRedirect('home-view')
-    # print("REGG: ", serializer)
-    print(serializer.errors)
     return Response({"message":"failed"})
 
 
@@ -92,4 +88,4 @@ def twitter_callback(request):
 @login_required
 def twitter_logout(request):
     logout(request)
-    # return redirect('index')
+    return redirect('ab')
