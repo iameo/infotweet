@@ -77,7 +77,7 @@ def twitter_callback(request):
                 user, twitter_user = create_update_user_from_twitter(twitter_user_new)
                 if user is not None:
                     login(request, user)
-                    return redirect('search_tweets')
+                    return redirect('home-view')
             else:
                 messages.add_message(request, messages.ERROR, 'Unable to get profile details. Please try again.')
                 return render(request, 'homex.html')
