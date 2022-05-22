@@ -435,7 +435,11 @@ h3 {
       right: 40px;
   }
   
-      
+  .ad-space {
+    background-image: url(/static/media/placeholder/rdnut.jpg);
+  }
+
+
 @media screen and (min-width: 720px) {
   .timeline {
     width: 760px;
