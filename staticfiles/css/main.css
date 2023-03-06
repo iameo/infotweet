@@ -436,7 +436,10 @@ h3 {
   }
   
   .ad-space {
-    background-image: url(/static/media/placeholder/rdnut.jpg);
+    background-image: url(https://pixabay.com/get/g4a4881e41f2e319a886a5160aa38417ff2c7f787e86bdd47019bb2038c8d133189b392ad01038fe09657e70c4fade2ea36a4b1ee419932826a807ecbcda73aacbb9e36430956a70f52916a1c347c4961_1920.jpg);
+    height: 45vh;
+    width: auto;
+    background-size: cover;
   }
 
 
