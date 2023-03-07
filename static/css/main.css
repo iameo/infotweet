@@ -93,9 +93,10 @@ li {
   display: block;
   position: relative;
   padding-left: 20px;
-  vertical-align: top;
-  display: inline-block; }
-
+  /* vertical-align: top;
+  display: inline-block; */
+  	}
+    
 .arrow {
   content: '';
   display: block;
