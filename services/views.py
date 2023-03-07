@@ -34,10 +34,11 @@ def social_home(request):
 
 
 def home_view(request):
-    if request.user.is_authenticated:
+    user = request.user
+    if user.is_authenticated:
         context = {}
         context['form'] = SearchForm(initial={'distance':'1000km'})
-        context['current_user'] = TwitterUser.objects.filter(user=request.user).first()
+        context['current_user'] = TwitterUser.objects.filter(user=user).first()
         return render( request, "home.html", context)
     return render(request, 'abc.html')
 
