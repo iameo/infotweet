@@ -1,21 +1,22 @@
 {% load filter_num %}
 
-<div class="row">
-    {% if city and keyword %}
-    <div class="col-12">
-        <div class="d-flex justify-content-between">
-            <div class="p-2 bd-highlight">
-                <h5 class="display-6">City: {{ city }}</h5>
-            </div>
-            <div class="p-2 bd-highlight">
-                <h5 class="display-6">Keyword: {{ keyword }}</h5>
-            </div>
-          </div>
-
-    </div>
-    {% endif %}
+<div class="row" id="search-results">
+    <!-- <div class="col-12 resultx">loading..TTTTT</div> -->
     <div class="col-12 mt-2">
-        <ul class="timeline list-group" id="search-results">
+        {% if city and keyword %}
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <div class="p-2 bd-highlight">
+                    <h5 class="display-6">City: {{ city }}</h5>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <h5 class="display-6">Keyword: {{ keyword }}</h5>
+                </div>
+              </div>
+    
+        </div>
+        {% endif %}
+        <ul class="timeline list-group" id="sddearch-results">
             {% if data %}
                 <div class="follow-schema mb-2 mt-2 pb-2 pt-2">
                     <div class="row">
