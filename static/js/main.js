@@ -1,7 +1,13 @@
 
 $(document).ready(function () {
-    var search_form = document.getElementById('resultx');
-    const searchBTN = document.getElementById('perform-search');
+    // var search_form = document.getElementById('resultx');
+    // const searchBTN = document.getElementById('perform-search');
+    
+    var message = document.getElementById("messages");
+
+    setTimeout(function(){ 
+        message.style.display = "none"; 
+    }, 1000);
 
     $("#current_location").click(function () {
         if ($(this).is(":checked")) {
