@@ -10,24 +10,58 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h5 class="display-6">Hello, {{ user }} </h5>
-                    <div class="profile-card">
-                        {% if not current_user.profile_image_urll %}
-                            <img src="{{ current_user.profile_image_url }}" class="img img-fluid" style="width: 200px; height: 200px;">
-                        {% else %}
-                            <img src="{{ current_user.profile_image_url }}" class="img img-fluid" style="width: 200px; height: 200px;">
-                        {% endif %}
-                        <div class="profile-name">{{ current_user.screen_name }}</div>
-                        <div class="profile-username">@{{ current_user.name }}</div>
+                {% if current_user %}
+                <h5 class="mb-2">Hello, <span class="display-4" style="color: rgb(95, 0, 95)">{{ current_user.name }} </span></h5>
+                    <div class="profile-card" style="background-image: url('{{ current_user.profile_image_url }}');">
+                    {% endif %}
+                        <img src="{{ current_user.profile_image_url }}" class="img img-fluid" style="width: 200px; height: 200px;">
+                        <div class="profile-name" style="color: rgb(75, 0, 75); font-weight: bolder;">{{ current_user.screen_name }}</div>
+                        <div class="profile-username"  style="color: rgb(75, 0, 75); font-weight: bolder;"><span style="color: rgb(0, 0, 0); font-weight: bolder; font-size: x-small;">[]</span>{{ current_user.name }}</div>
                     </div>
             </div>
         </div>
-        <div class="row text-center pt-4" style="margin: 3rem auto;">
+        <div class="row pt-4" style="margin: 3rem auto;">
             <div class="col-12">
                 <form method="GET" id="search-form" hx-get="{% url 'search_tweets' %}" hx-target="#search-results" hx-swap="outerHTML">
-                    {% csrf_token %} 
-{{ form }}
-                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <!-- {% csrf_token %}  -->
+                    <div class="input-group mb-3 p-2">
+                        <span class="input-group-text">keyword</span>
+                          <input type="text" class="form-control" id="keyword" name="keyword" aria-describedby="keyword" placeholder="ex: doughnut" required>
+                          
+                          <span class="input-group-text">geocode</span>
+                          <select id="geocode" class="form-select" name="geocode" aria-describedby="geocode" name="geocode">
+                              <option selected disabled value>distance------</option>
+                              <option value="1km">1KM</option>
+                              <option value="5km">5KM</option>
+                              <option value="10km"><10KM</option>
+                              <option value="20km"><20KM</option>
+                              <option value="40km"><40KM</option>
+                              <option value="100km"><100KM</option>
+                              <option value="1000km"><500KM</option>
+                              <option value="5000km">>1000KM</option>
+                            </select> 
+                    </div>
+                    
+                    <div class="input-group mb-3 form-check">
+                        <span class="input-group-text">language</span>
+                          <input type="language" class="form-control" id="language" name="language" aria-describedby="language" value="en" name="language">
+
+                          <span class="input-group-text">result type</span>
+                          <select id="result_type" class="form-select" name="result_type" aria-describedby="result_type" name="result_type" required>
+                            <option selected disabled value>search type--------</option>
+                            <option value="mixed">Popular + Real-time</option>
+                            <option value="recent">Only Recent tweets</option>
+                            <option value="popular">Most Popular</option>
+                          </select> 
+
+                        <div class="form-check pr-2">
+                            <input class="form-check-input" type="checkbox" id="current_location" name="current_location" checked>
+                            <label class="form-check-label" for="current_location">Use Current Location</label>
+                        </div>
+                    </div>
+                
+
+                    <input type="submit" id="perform-search" value="Submit" class="btn btn-primary mt-2 mb-3">
                 </form>                
             </div>
         </div>
