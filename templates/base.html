@@ -54,16 +54,17 @@
         </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+
+    <div class="container messages" id="messagesx">
+      <div class="row mb-2 mt-2 p-2">
+        <div class="col-12 text-center">
           {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+          <ul class="messages" id="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -86,17 +87,9 @@
         document.body.addEventListener('htmx:configRequest', (event) => {
         event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
         });
-        $(function () {
-            $("#id_current_location").click(function () {
-                if ($(this).is(":checked")) {
-                    $("#id_distance").removeAttr("disabled");
-                    $("#id_distance").focus();
-                } else {
-                    $("#id_distance").attr("disabled", "disabled");
-                }
-            });
-        });
     </script>
+
+    <script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>
