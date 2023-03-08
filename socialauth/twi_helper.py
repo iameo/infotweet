@@ -28,5 +28,4 @@ class TwitterAuthTokenVerification:
                 "error": str(e)
             })
         else:
-            print("55REE: ", access_token_key, access_token_secret, user_profile)
             return user_profile
