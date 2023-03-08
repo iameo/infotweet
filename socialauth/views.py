@@ -30,6 +30,10 @@ def se(request):
 # # Create your views here.
 def twitter_login(request):
     twitter_api = TwitterAPI()
+    login_data = twitter_api.twitter_login()
+    if not login_data:
+        messages.add_message(request=request, level=messages.INFO, message='Your credentials were not accepted by Twitter OAuth...')
+        return render(request, 'base.html')
     url, oauth_token, oauth_token_secret = twitter_api.twitter_login()
     if url is None or url == '':
         messages.add_message(request, messages.ERROR, 'Unable to login. Please try again.')
