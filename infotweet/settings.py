@@ -16,18 +16,20 @@ import dj_database_url
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-load_dotenv()
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+
+#'http://127.0.0.1,http://127.0.1.4'
+ALLOWED_HOSTS_ = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ALLOWED_HOSTS_.split(',')
+
 
 
 # Application definition
@@ -156,6 +158,9 @@ MEDIA_URL = 'media/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
+
+CSRF_ORIGINS = os.getenv('CORS_HOSTS')
+CSRF_TRUSTED_ORIGINS = CSRF_ORIGINS.split(',')
 
 LOGIN_URL = '/'
 
