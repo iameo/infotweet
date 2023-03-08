@@ -12,10 +12,14 @@ from socialauth.wrapper import twitter_login_required
 from django.contrib.auth.decorators import login_required
 import os
 
+from django.http import JsonResponse
+
 
 from socialauth.api import TwitterAPI
 from socialauth.models import TwitterUser
 
+
+from django.contrib import messages
 
 def getClient(request):
     user = TwitterUser.objects.filter(user=request.user)
@@ -36,6 +40,7 @@ def social_home(request):
 def home_view(request):
     user = request.user
     if user.is_authenticated:
+        messages.add_message(request=request, level=messages.SUCCESS, message="successfully logged in........")
         context = {}
         context['form'] = SearchForm(initial={'distance':'1000km'})
         context['current_user'] = TwitterUser.objects.filter(user=user).first()
@@ -57,12 +62,12 @@ def search_tweets(request):
     data = []
 
     params['q'] = request.GET.get('keyword')
-    params['geocode'] = request.GET.get('distance')
+    params['geocode'] = request.GET.get('geocode')
     params['lang'] = request.GET.get('language')
-    params['result_type'] = request.GET.get('type')
+    params['result_type'] = request.GET.get('result_type')
     params['current_location'] = request.GET.get('current_location')
 
-    
+    messages.add_message(request=request, level=messages.INFO, message='fetching data........')
     results, city = fetch_search(params, exclude_q_in_name=False, client=client, request=request)
 
 
