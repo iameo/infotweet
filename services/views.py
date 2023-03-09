@@ -42,7 +42,7 @@ def home_view(request):
     if user.is_authenticated:
         messages.add_message(request=request, level=messages.SUCCESS, message="successfully logged in........")
         context = {}
-        context['form'] = SearchForm(initial={'distance':'1000km'})
+        # context['form'] = SearchForm(initial={'distance':'1000km'})
         context['current_user'] = TwitterUser.objects.filter(user=user).first()
         return render( request, "home.html", context)
     return render(request, 'abc.html')
@@ -130,7 +130,7 @@ def search_tweets(request):
 
 def create_fav(request):
     client = getClient()
-     
+    #collect data from frontend
     status_list = []
     for status in status_list:
         client.create_favorite(status.id, include_entities=True)
